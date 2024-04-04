@@ -8,4 +8,4 @@ router.get("/usuarios", userController.getAllUsers);
 
 
 
-export default router;
+export default router; 
