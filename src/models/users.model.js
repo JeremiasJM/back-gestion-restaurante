@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Schema } from "mongoose";
+const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
@@ -15,15 +15,17 @@ const userSchema = new Schema(
       required: true,
     },
     rol: {
-      type: String,
-      enum: ['admin', 'usuario'],
-      required: true
+      isAdmin: {
+        type: Boolean,
+        default: false
+      }
     },
     estadoUsuario: {
-      type: String,
-      enum: ['aprobado', 'pendiente', 'suspendido'],
-      default: 'pendiente'
-    },
+      isAprobado: {
+        type: Boolean,
+        default: false
+      }
+    }
   },
   { timestamps: true, versionKey: false }
 );

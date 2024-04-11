@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Schema } from "mongoose";
+const { Schema } = mongoose;
 
 const reserveSchema = new Schema(
   {
@@ -21,9 +21,8 @@ const reserveSchema = new Schema(
       required: true
     },
     estadoReserva: {
-      type: String,
-      enum: ['pendiente', 'confirmada', 'cancelada'],
-      default: 'pendiente'
+      type: Boolean,
+      default: false
     }
   },
   { timestamps: true, versionKey: false }
