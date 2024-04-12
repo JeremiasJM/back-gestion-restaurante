@@ -7,5 +7,20 @@ const router = express.Router();
 router.get("/usuarios", userController.getAllUsers);
 
 
+//Registro
+router.post("/registro", userController.registroUsuario);
+
+// Delete user
+router.delete("/delete/:id", userController.deleteUsuario);
+
+// Update user
+
+router.put("/update/:id", userController.updateUser);
+
+// Login
+
+router.post("/login", userController.loginUsuario);
+
+
 
 export default router; 
