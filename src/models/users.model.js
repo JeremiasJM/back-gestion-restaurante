@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
-
+// REFINAMIENTO DE MODELADO DE GEORGINA
 const userSchema = new Schema(
   {
     nombre: String,
@@ -18,8 +18,12 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    isAprobado: {
+      type: Boolean,
+      default: false
+    }
   },
-  { versionKey: false }
+  { timestamps: true, versionKey: false }
 );
 
 const UserModel = mongoose.model("User", userSchema);
