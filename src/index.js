@@ -2,6 +2,7 @@ import express from 'express';
 import { PORT } from './config/config.js';
 import cors from 'cors';
 import userRouter from "./routes/users.routes.js";
+import privateRouter from "./routes/private.route.js";
 
 const app = express();
 app.use(cors());
@@ -18,5 +19,8 @@ app.listen(PORT, async () => {
 
 
 //Rutas
+
 app.use("/api",userRouter)
 //app.use("/api", comprobacionJwt, privateRouter)
+
+
