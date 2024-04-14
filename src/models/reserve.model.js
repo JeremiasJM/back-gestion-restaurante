@@ -6,7 +6,7 @@ const reserveSchema = new Schema(
     nombre: String,
     apellido: {
       type: String,
-      required: true,
+      required: true
     },
     fecha: {
       type: Date,

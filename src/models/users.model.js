@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
-// REFINAMIENTO DE MODELADO DE GEORGINA
+
 const userSchema = new Schema(
   {
     nombre: String,
@@ -8,22 +8,15 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     contrasena: {
       type: String,
-      required: true,
+      required: true
     },
-    rol: {
-      isAdmin: {
-        type: Boolean,
-        default: false
-      }
-    },
-    estadoUsuario: {
-      type: String,
-      enum: ['aprobado', 'pendiente', 'suspendido'],
-      default: 'pendiente'
+    admin: {
+      type: Boolean,
+      default: false
     },
     isAprobado: {
       type: Boolean,
