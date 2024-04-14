@@ -21,6 +21,7 @@ app.listen(PORT, async () => {
 
 
 //Rutas
+//rutas
 
 app.use("/api",userRouter)
 //app.use("/api", comprobacionJwt, privateRouter)
