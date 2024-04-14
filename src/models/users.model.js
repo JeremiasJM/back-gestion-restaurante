@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Schema } from "mongoose";
 import { emailRegex } from '../helpers/emailRegex.js';
 import { contrasenaRegex } from '../helpers/contrasenaRegex.js';
