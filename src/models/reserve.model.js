@@ -1,5 +1,6 @@
+import mongoose from "mongoose";
 import { Schema } from "mongoose";
-import { horaRegex } from '../helpers/horaRegex';
+import { horaRegex } from '../helpers/horaRegex.js';
 
 const reserveSchema = new Schema(
   {
