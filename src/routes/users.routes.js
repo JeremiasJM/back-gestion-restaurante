@@ -3,12 +3,17 @@ import userController from "../controllers/user.controller.js";
 
 const router = express.Router();
 
-//Get all users
+
 router.get("/usuarios", userController.getAllUsers);
 
-/* COMENTARIO NECESARIO PARA PODER PROBAR LOS CONROLLERS
-// Register
-router.post("/register", userController.createUser);
+
+router.post("/registro", userController.registroUsuario);
+
+router.delete("/delete/:id", userController.deleteUsuario);
+
+router.put("/update/:id", userController.updateUser);
+
+router.post("/login", userController.loginUsuario);
 
 // Login
 router.post("/login", userController.loginUser);
@@ -24,5 +29,5 @@ router.get("/user/:email", userController.getUser);
 
 //Disable user
 router.put("/disable/:id", userController.disableUser);
-*/
+
 export default router; 
