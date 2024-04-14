@@ -10,13 +10,19 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
-    password: {
+    contrasena: {
       type: String,
       required: true,
     },
-    admin: {
-      type: Boolean,
-      default: false,
+    rol: {
+      type: String,
+      enum: ['admin', 'usuario'],
+      required: true
+    },
+    estadoUsuario: {
+      type: String,
+      enum: ['aprobado', 'pendiente', 'suspendido'],
+      default: 'pendiente'
     },
     isAprobado: {
       type: Boolean,
