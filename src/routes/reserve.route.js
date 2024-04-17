@@ -1,17 +1,17 @@
-import { Router } from "express";
-import reserveController from "../controllers/reserve.controller.js";
+import express from "express";
+import {getReserves,getByIdReserve,createReserve,deleteReserve,updateReserve} from "../controllers/reserve.controller.js";
 
 
-const router = Router();
+const router = express.Router();
 
-router.get("/reserves", reserveController.getReserves);
+router.get("/", getReserves);
 
-router.get("/reserve/:id", reserveController.getByIdReserve);
+router.get("/:id", getByIdReserve);
 
-router.post("/reserve", reserveController.createReserve);
+router.post("/create", createReserve);
 
-router.delete("/deleteReserve/:id", reserveController.deleteReserve);
+router.delete("/delete/:id", deleteReserve);
 
-router.put("/updateReserve/:id", reserveController.updateReserve);
+router.put("/update/:id", updateReserve);
 
 export default router;

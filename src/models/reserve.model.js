@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+/* import mongoose from "mongoose";
 import { Schema } from "mongoose";
 import { horaRegex } from '../helpers/horaRegex.js';
 
@@ -63,4 +63,41 @@ reserveSchema.pre('validate', async function (next) {
 });
 
 const ReserveModel = mongoose.model("Reserve", reserveSchema);
+export default ReserveModel; */
+
+import mongoose from "mongoose";
+const { Schema } = mongoose;
+
+const reserveSchema = new Schema(
+  {
+    nombre: {
+      type: String,
+      required: true,
+    },
+    apellido: {
+      type: String,
+      required: true
+    },
+    fecha: {
+      type: Date,
+      required: true
+    },
+    hora: {
+      type: String,
+      required: true
+    },
+    comensales: {
+      type: Number,
+      required: true
+    },
+    estadoReserva: {
+      type: Boolean,
+      default: true
+    }
+  },
+  { timestamps: true, versionKey: false }
+);
+
+const ReserveModel = mongoose.model("Reserve", reserveSchema);
+
 export default ReserveModel;

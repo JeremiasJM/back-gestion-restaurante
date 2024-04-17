@@ -27,24 +27,24 @@ const userSchema = new Schema(
       lowercase: true,
       match: [emailRegex, "El correo electrónico no es válido"]
     },
-    contrasena: {
+    password: {
       type: String,
       required: true,
       minlength: 8,
-      validate: {
+    /*   validate: {
         validator: function (contrasenaValida) {
           return contrasenaRegex.test(contrasenaValida);
         },
         message: "La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial"
-      }
+      } */
     },
     admin: {
       type: Boolean,
       default: false
     },
-    isAprobado: {
+    estado: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   { timestamps: true, versionKey: false }
