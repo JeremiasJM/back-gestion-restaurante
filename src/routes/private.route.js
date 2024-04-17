@@ -7,7 +7,6 @@ router.get("/admin", (req, res) => {
     error: null,
     message: "Admin page",
     data: {
-      title: "Admin page",
       usuario: req.usuario,
     },
   });
