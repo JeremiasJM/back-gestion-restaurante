@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-router.get("/admin", (req, res) => {
+router.get("/", (req, res) => {
     console.log(req, "usuario")
   res.json({
     error: null,
