@@ -56,7 +56,7 @@ export const updateUser = async (req, res) => {
       return res.status(400).json({ message: "Usuario Inexistente" });
     }
 
-    const { nombre, apellido, estado } = req.body;
+    const { nombre, apellido,mail, estado } = req.body;
 
     // Verificar si todos los campos requeridos están presentes
     if (!nombre || !apellido ) {
@@ -74,7 +74,7 @@ export const updateUser = async (req, res) => {
     // Actualizar el usuario
     const updatedUser = await UserModel.findByIdAndUpdate(
       id,
-      { nombre, apellido, estado },
+      { nombre, apellido,mail, estado },
       { new: true }
     );
 
