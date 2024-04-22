@@ -19,22 +19,21 @@
 
 ## Estructura del proyecto <a name="estructura"></a>
 
-`/
+/
 ├── src/
-│   ├── config/
-│   ├── controllers/
-│   ├── db/
-│   ├── helpers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   └── index.js
+│ ├── config/
+│ ├── controllers/
+│ ├── db/
+│ ├── helpers/
+│ ├── middleware/
+│ ├── models/
+│ ├── routes/
+│ └── index.js
 ├── .env
 ├── .gitignore
 ├── package-lock.json
 ├── package.json
 └── README.md
-`
 
 ## Tecnologías utilizadas <a name="tecnologias"></a>
 
