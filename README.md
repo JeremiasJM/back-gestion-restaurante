@@ -19,6 +19,7 @@
 
 ## Estructura del proyecto <a name="estructura"></a>
 
+```
 /
 ├── src/
 │ ├── config/
@@ -34,6 +35,7 @@
 ├── package-lock.json
 ├── package.json
 └── README.md
+```
 
 ## Tecnologías utilizadas <a name="tecnologias"></a>
 
