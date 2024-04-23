@@ -137,13 +137,17 @@ export const createUser = async (req, res) => {
   try {
     const { nombre, apellido, email, password, admin } = req.body;
 
-    
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
 
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "Ya existe un usuario registrado con este correo electrónico" });
+      return res
+        .status(400)
+        .json({
+          message:
+            "Ya existe un usuario registrado con este correo electrónico",
+        });
     }
     const newUser = new UserModel({
       nombre,
@@ -153,22 +157,20 @@ export const createUser = async (req, res) => {
       admin,
     });
 
-  
     const user = await newUser.save();
 
-  
     const transporter = nodemailer.createTransport({
-      host: 'smtp.office365.com',
+      host: "smtp.office365.com",
       port: 587,
       auth: {
-        user: "",//cuenta de microsoff 
-        pass: "",//pass de la cuenta
+        user: "", //cuenta de microsoff
+        pass: "", //pass de la cuenta
       },
     });
 
     const mailOptions = {
       from: "", //misma cuenta de arriba xd
-      to: email, 
+      to: email,
       subject: "Bienvenido a Rolling Food!",
       text: `Hola ${nombre},\n\n¡Gracias por registrarte en Rolling Food! Esperamos que disfrutes de nuestro servicio.\n\nSaludos,\nEl equipo de Rolling Food`,
     };
@@ -194,7 +196,7 @@ export const loginUser = async (req, res) => {
     return res.status(405).json({ message: "Method not allowed" });
   }
   try {
-    const { email, password } = req.body; 
+    const { email, password } = req.body;
     if (!email || !password) {
       return res
         .status(400)
@@ -219,15 +221,14 @@ export const loginUser = async (req, res) => {
 
     const token = jwt.sign(
       {
-        
         id: user._id,
         nombre: user.nombre,
         apellido: user.apellido,
         admin: user.admin,
       },
-      process.env.SECRET, 
+      process.env.SECRET,
 
-      { expiresIn: 15000 } 
+      { expiresIn: 15000 }
     );
 
     res
@@ -247,7 +248,6 @@ export const disableUser = async (req, res) => {
   try {
     const { id } = req.params;
 
-  
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
       return res.status(400).json({ message: "ID de usuario inválido" });
     }
@@ -294,7 +294,67 @@ export const enableUser = async (req, res) => {
     res.status(500).json({ message: "Error interno del servidor" });
   }
 };
+//crea una funcion que sea generar codigo para recuperar contraseña, donde ingresa el mail, valide que hay un mail en la base de dato , si hay va a generar un codigo aleatorio que se va a guardar en la base de datos
+export const generateCode = async (req, res) => {
+  const { email } = req.body;
+  const user = await UserModel.findOne({ email });
+  console.log(user);
+  if (!user) {
+    return res.status(404).json({ message: "Usuario no encontrado" });
+  }
 
+  const code = Math.floor(100000 + Math.random() * 900000);
+  user.cod_recuperacion = code;
+  await user.save();
+  const transporter = nodemailer.createTransport({
+    host: "smtp.office365.com",
+    port: 587,
+    auth: {
+      user: "jeremyjuarezmarrades@hotmail.com", //cuenta de microsoff
+      pass: "je10re9mias", //pass de la cuenta
+    },
+  });
+  const mailOptions = {
+    from: "jeremyjuarezmarrades@hotmail.com", //misma cuenta de arriba xd
+    to: email,
+    subject: "Codigo de recuperacion",
+    text: `Su codigo de recuperacion es ${code}`,
+  };
+  transporter.sendMail(mailOptions, (error) => {
+    if (error) {
+      res.status(400).json({ message: "Error al enviar el codigo" });
+    } else {
+      res.status(200).json({ message: "Codigo enviado" });
+    }
+  });
+  res.status(200).json({ message: "Codigo generado" });
+};
+export const recuperapassword = async (req,res)=>{
+  if(req.method !== "POST"){
+    return res.status(405).json({message: "Method not allowed"})
+  }
+  if(!req.body.email ||!req.body.cod_recuperacion|| !req.body.password){
+    return res.status(400).json({message: "Faltan datos"})
+  }
+  try {
+    const {email,cod_recuperacion,password} = req.body
+    const user = await UserModel.findOne({email})
+    if(!user){
+      return res.status(404).json({message: "Usuario no encontrado"})
+    }
+    if(user.cod_recuperacion !== cod_recuperacion){
+      return res.status(400).json({message: "Codigo de recuperacion incorrecto"})
+    }
+    const salt = await bcrypt.genSalt(10)
+    const passwordHash = await bcrypt.hash(password,salt)
+    user.password = passwordHash
+    await user.save()
+    res.status(200).json({mensaje:'Recuperacion de Clave exitosa'})
+  }catch (error){
+    res.status(500).json({message: "Error interno del servidor"})
+  } 
+
+}
 export default {
   getAllUsers,
   getUserById,
@@ -304,4 +364,6 @@ export default {
   loginUser,
   disableUser,
   enableUser,
+  generateCode,
+  recuperapassword
 };

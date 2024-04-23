@@ -30,13 +30,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-      minlength: 8,
-    /*   validate: {
-        validator: function (contrasenaValida) {
-          return contrasenaRegex.test(contrasenaValida);
-        },
-        message: "La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial"
-      } */
+      minlength: 8,    
     },
     admin: {
       type: Boolean,
@@ -45,6 +39,10 @@ const userSchema = new Schema(
     estado: {
       type: Boolean,
       default: true
+    },
+    cod_recuperacion: {
+      type: String,
+      default: null
     }
   },
   { timestamps: true, versionKey: false }
