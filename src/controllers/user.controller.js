@@ -163,13 +163,13 @@ export const createUser = async (req, res) => {
       host: "smtp.office365.com",
       port: 587,
       auth: {
-        user: "", //cuenta de microsoff
-        pass: "", //pass de la cuenta
+        user: "jeremyjuarezmarrades@hotmail.com", //cuenta de microsoff
+        pass: "je10re9mias", //pass de la cuenta
       },
     });
 
     const mailOptions = {
-      from: "", //misma cuenta de arriba xd
+      from: "jeremyjuarezmarrades@hotmail.com", //misma cuenta de arriba xd
       to: email,
       subject: "Bienvenido a Rolling Food!",
       text: `Hola ${nombre},\n\n¡Gracias por registrarte en Rolling Food! Esperamos que disfrutes de nuestro servicio.\n\nSaludos,\nEl equipo de Rolling Food`,
