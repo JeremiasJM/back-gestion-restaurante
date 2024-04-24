@@ -225,6 +225,8 @@ export const loginUser = async (req, res) => {
         nombre: user.nombre,
         apellido: user.apellido,
         admin: user.admin,
+        estado: user.estado,
+        email: user.email,
       },
       process.env.SECRET,
 
