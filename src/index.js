@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 app.use("/api/user", userRoutes)
 app.use("/api/reserve", reserveRouter);
-app.use("/api",comprobacionJwt, privateRouter);
+app.use("/api/admin",comprobacionJwt, privateRouter);
 app.use(methodNotAllowedHandler);
 /* COMENTARIO NECESARIO PARA PODER PROBAR LOS CONROLLERS
 app.use("/api", userRoutes);
