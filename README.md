@@ -49,6 +49,10 @@
 - Georgina Costilla: https://github.com/georginacostilla | https://www.linkedin.com/in/georgina-costilla/
 - Andrea Orlandi: https://github.com/AndiOrlandi | https://www.linkedin.com/in/andreajosefinaorlandi/
 - Jeremias Juarez Marrades: https://github.com/JeremiasJM | https://www.linkedin.com/in/jeremiasjm/
+<<<<<<< HEAD
+- Cristian Fernández: https://github.com/Fernandez-Cristian-Javier-ISI-UTN-FRT | https://www.linkedin.com/in/fern%C3%A1ndez-cristian-javier-93-/
+=======
 - Cristian Fernández:
   https://github.com/Fernandez-Cristian-Javier-ISI-UTN-FRT | https://www.linkedin.com/in/fern%C3%A1ndez-cristian-javier-93-/
+>>>>>>> 48146fbcd56bd5559e7884d60a5383f21f67d01c
 - Braian Mena: https://github.com/mbraian | https://www.linkedin.com/in/braian-mena/

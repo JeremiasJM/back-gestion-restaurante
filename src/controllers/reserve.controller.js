@@ -33,17 +33,23 @@ export const createReserve = async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
-  if (
-    !req.body.nombre ||
-    !req.body.apellido ||
-    !req.body.fecha ||
-    !req.body.hora ||
-    !req.body.comensales
-  ) {
+
+  const { nombre, apellido, fecha, hora, comensales } = req.body;
+
+  if (!nombre || !apellido || !fecha || !hora || !comensales) {
     return res.status(400).json({ message: "Faltan datos" });
   }
-  const { nombre, apellido, fecha, hora, comensales } = req.body;
+
   try {
+    // Verificar si ya existe una reserva en la misma fecha y hora
+    const existingReserve = await ReserveModel.findOne({ fecha, hora });
+    if (existingReserve) {
+      return res
+        .status(400)
+        .json({ message: "Ya existe una reserva para esta fecha y hora" });
+    }
+
+    // Si no hay reservas en la misma fecha y hora, crear una nueva
     const newReserve = new ReserveModel({
       nombre,
       apellido,
@@ -57,6 +63,7 @@ export const createReserve = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 export const updateReserve = async (req, res) => {
   if (req.method !== "PUT") {
